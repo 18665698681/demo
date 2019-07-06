@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtlonline.shop.mapper.activity.ActivityConfigMapper">
+  <resultMap id="BaseResultMap" type="com.dtlonline.shop.model.activity.ActivityConfig">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txnId" jdbcType="VARCHAR" property="txnId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="imgId" jdbcType="BIGINT" property="imgId" />
+    <result column="jumptype" jdbcType="TINYINT" property="jumptype" />
+    <result column="activityId" jdbcType="BIGINT" property="activityId" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="index" jdbcType="INTEGER" property="index" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="createdBy" jdbcType="VARCHAR" property="createdBy" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastModifyTime" jdbcType="TIMESTAMP" property="lastModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, txnId, `type`, imgId, jumptype, activityId, url, `index`, `status`, createdBy, 
+    createTime, lastModifyTime
+  </sql>
+</mapper>

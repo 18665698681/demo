@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtlonline.shop.mapper.store.StoreGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.dtlonline.shop.model.store.StoreGoods">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txnId" jdbcType="VARCHAR" property="txnId" />
+    <result column="pid" jdbcType="BIGINT" property="pid" />
+    <result column="goodsNo" jdbcType="VARCHAR" property="goodsNo" />
+    <result column="inventoryNo" jdbcType="VARCHAR" property="inventoryNo" />
+    <result column="productId" jdbcType="BIGINT" property="productId" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="validQuantity" jdbcType="INTEGER" property="validQuantity" />
+    <result column="userId" jdbcType="BIGINT" property="userId" />
+    <result column="storeId" jdbcType="BIGINT" property="storeId" />
+    <result column="storageFee" jdbcType="DECIMAL" property="storageFee" />
+    <result column="inStoreDate" jdbcType="DATE" property="inStoreDate" />
+    <result column="carNumber" jdbcType="VARCHAR" property="carNumber" />
+    <result column="lossSale" jdbcType="DECIMAL" property="lossSale" />
+    <result column="confirmer" jdbcType="VARCHAR" property="confirmer" />
+    <result column="preserver" jdbcType="VARCHAR" property="preserver" />
+    <result column="contract" jdbcType="VARCHAR" property="contract" />
+    <result column="insuranceMoney" jdbcType="DECIMAL" property="insuranceMoney" />
+    <result column="insuranceBeginDate" jdbcType="DATE" property="insuranceBeginDate" />
+    <result column="insuranceEndDate" jdbcType="DATE" property="insuranceEndDate" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="bizType" jdbcType="TINYINT" property="bizType" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastModifyTime" jdbcType="TIMESTAMP" property="lastModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, txnId, pid, goodsNo, inventoryNo, productId, quantity, validQuantity, userId, 
+    storeId, storageFee, inStoreDate, carNumber, lossSale, confirmer, preserver, contract, 
+    insuranceMoney, insuranceBeginDate, insuranceEndDate, `status`, bizType, createTime,
+    lastModifyTime
+  </sql>
+
+  <select id="selectPassListByStandard" resultType="com.dtlonline.api.shop.view.store.StoreGoodsMergeQuantityDTO">
+        SELECT
+            inventoryNo,
+            productTitle,
+            userId,
+            (
+                SELECT
+                    IFNULL(sum(validQuantity),0)
+                FROM
+                    store_goods
+                WHERE status = 1
+                AND id IN (
+                    SELECT id
+                    FROM store_goods
+                    WHERE productTitle = t.productTitle
+                    AND userId = t.userId
+                )
+            ) as sumValidQuantity,
+            (
+                SELECT
+                    IFNULL(sum(quantity),0)
+                FROM
+                    store_goods
+                WHERE bizType = 2
+                AND status = 1
+                AND pid IN (
+                    SELECT id
+                    FROM store_goods
+                    WHERE productTitle = t.productTitle
+                    AND userId = t.userId
+                )
+            ) as sumLendingQuantity,
+            (
+                SELECT
+                    IFNULL(sum(quantity),0)
+                FROM
+                    store_goods
+                WHERE status = 3
+                AND pid IN (
+                    SELECT id
+                    FROM store_goods
+                    WHERE productTitle = t.productTitle
+                    AND userId = t.userId
+                )
+            ) as sumFrozenQuantity
+        FROM store_goods t
+        WHERE userId = #{userId}
+        GROUP BY productTitle
+        ORDER BY id
+  </select>
+</mapper>

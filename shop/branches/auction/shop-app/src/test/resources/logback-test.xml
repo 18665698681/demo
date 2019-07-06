@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+<configuration debug="false" scan="false">
+    <contextName>user</contextName>
+    <property name="log.level" value="INFO"/>
+    <property name="console.pattern"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{50}) - %highlight(%msg) %n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${console.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${log.level}">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <logger name="com.dtlonline.user.mapper" additivity="true" level="DEBUG" />
+</configuration>

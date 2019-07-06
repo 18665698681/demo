@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dtlonline.shop.mapper.ShopAuthRecordDao">
+    <select id="queryShopAuthRecordsInPageByCondition" resultType="com.dtlonline.shop.view.ShopAuthRecordPageInfoDTO">
+        SELECT * FROM shop_auth_record
+        <where>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="shopType != null">
+                AND type = #{shopType}
+            </if>
+            <if test="status !=null">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY createTime DESC
+    </select>
+    <update id="updateShopAuthRecordsById">
+        UPDATE shop_auth_record
+        <set>
+            staffName = #{staffName},
+            status = #{checkInfoDTO.status},
+            opinion = #{checkInfoDTO.opinion}
+        </set>
+        WHERE id = #{checkInfoDTO.id} AND `status` != 1
+    </update>
+</mapper>

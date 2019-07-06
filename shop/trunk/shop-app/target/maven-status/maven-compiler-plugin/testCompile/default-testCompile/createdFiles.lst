@@ -1,0 +1,8 @@
+com\dtlonline\shop\utilities\GetJsonFromClass.class
+com\dtlonline\shop\utilities\CategoryTest.class
+com\dtlonline\shop\utilities\PropertyEditorConverter.class
+com\dtlonline\shop\service\store\StoreGoodsExtractServiceTest.class
+com\dtlonline\shop\service\store\StoreGoodsRequireServiceTest.class
+com\dtlonline\shop\service\store\StoreGoodsServiceTest.class
+com\dtlonline\shop\mapper\auction\ProductAuctionDaoTest.class
+com\dtlonline\shop\service\ProductServiceTest.class

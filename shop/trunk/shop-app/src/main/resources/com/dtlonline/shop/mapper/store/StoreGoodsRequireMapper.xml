@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtlonline.shop.mapper.store.StoreGoodsRequireMapper">
+  <resultMap id="BaseResultMap" type="com.dtlonline.shop.model.store.StoreGoodsRequire">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txnId" jdbcType="VARCHAR" property="txnId" />
+    <result column="userId" jdbcType="BIGINT" property="userId" />
+    <result column="storeId" jdbcType="BIGINT" property="storeId" />
+    <result column="goodsInfo" jdbcType="VARCHAR" property="goodsInfo" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="tradeType" jdbcType="TINYINT" property="tradetype" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="offSaleDate" jdbcType="DATE" property="offsaledate" />
+    <result column="returnRate" jdbcType="DECIMAL" property="returnRate" />
+    <result column="insuranceMoney" jdbcType="DECIMAL" property="insuranceMoney" />
+    <result column="insuranceBeginDate" jdbcType="DATE" property="insurancebegindate" />
+    <result column="insuranceEndDate" jdbcType="DATE" property="insuranceenddate" />
+    <result column="requireProductInfo" jdbcType="VARCHAR" property="requireProductInfo" />
+    <result column="requireTradeZone" jdbcType="VARCHAR" property="requireTradeZone" />
+    <result column="auditUser" jdbcType="BIGINT" property="auditUser" />
+    <result column="auditStaffName" jdbcType="VARCHAR" property="auditStaffName" />
+    <result column="auditOpinion" jdbcType="VARCHAR" property="auditOpinion" />
+    <result column="auditStatus" jdbcType="TINYINT" property="auditStatus" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="lastModifyTime" jdbcType="TIMESTAMP" property="lastmodifytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, txnId, userId, storeId, goodsInfo, title, `type`, tradeType, quantity, offSaleDate, 
+    returnRate, insuranceMoney, insuranceBeginDate, insuranceEndDate, requireProductInfo,
+    requireTradeZone, auditUser, auditStaffName, auditOpinion, auditStatus, createTime, 
+    lastModifyTime
+  </sql>
+</mapper>

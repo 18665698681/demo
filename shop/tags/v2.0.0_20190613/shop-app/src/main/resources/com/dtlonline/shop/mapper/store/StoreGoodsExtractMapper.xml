@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtlonline.shop.mapper.store.StoreGoodsExtractMapper">
+  <resultMap id="BaseResultMap" type="com.dtlonline.shop.model.store.StoreGoodsExtract">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txnId" jdbcType="VARCHAR" property="txnId" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="storeGoodsId" jdbcType="BIGINT" property="storeGoodsId" />
+    <result column="goodsNo" jdbcType="VARCHAR" property="goodsNo" />
+    <result column="inventoryNo" jdbcType="VARCHAR" property="inventoryNo" />
+    <result column="addressId" jdbcType="BIGINT" property="addressId" />
+    <result column="logisticsCosts" jdbcType="DECIMAL" property="logisticsCosts" />
+    <result column="papersType" jdbcType="TINYINT" property="paperstype" />
+    <result column="papersNumber" jdbcType="VARCHAR" property="papersNumber" />
+    <result column="auditUser" jdbcType="VARCHAR" property="auditUser" />
+    <result column="auditStatus" jdbcType="TINYINT" property="auditstatus" />
+    <result column="auditOpinion" jdbcType="VARCHAR" property="auditOpinion" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="lastModifyTime" jdbcType="TIMESTAMP" property="lastmodifytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, txnId, quantity, storeGoodsId, goodsNo, inventoryNo, addressId, logisticsCosts,
+    papersType, papersNumber, auditUser, auditStatus, auditOpinion, createTime, lastModifyTime
+  </sql>
+</mapper>

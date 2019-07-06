@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtlonline.shop.mapper.store.StoreGoodsRequirePathMapper">
+  <resultMap id="BaseResultMap" type="com.dtlonline.shop.model.store.StoreGoodsRequirePath">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txnId" jdbcType="VARCHAR" property="txnId" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="lastModifyTime" jdbcType="TIMESTAMP" property="lastmodifytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, txnId, province, city, createTime, lastModifyTime
+  </sql>
+</mapper>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gaoqiang</title>
+</head>
+<body>
+<table>
+    <tr>
+        <tb>姓名：</tb>
+        <tb id ="userName"></tb>
+    </tr>
+    <tr>
+        <tb>       密码：</tb>
+        <tb id ="password"></tb>
+    </tr>
+</table>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script >
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/user/detail?id=1",
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+                $("#userName").html(data.userName);
+                $("#password").html(data.password);
+            }
+        });
+    });
+</script>
+</html>

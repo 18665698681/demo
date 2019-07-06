@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dtlonline.shop.mapper.CategoryDao">
+
+    <select id="queryCategoryList" resultType="com.dtlonline.shop.model.Category">
+        SELECT
+          id,
+          txnId,
+          title,
+          parentId,
+          imgs,
+          `index`,
+          status,
+          active
+        FROM
+          category
+    </select>
+
+    <select id="queryCategorys" resultType="com.dtlonline.shop.model.Category">
+        SELECT
+          id,
+          title,
+          imgs,
+          parentId
+        FROM
+          category WHERE id = #{categoryId} and status = 1
+    </select>
+</mapper>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dtlonline.shop.mapper.ProductDao">
+
+    <select id="queryProductForList" resultType="com.dtlonline.shop.model.Product">
+        SELECT
+        pr.id,
+        pr.txnId,
+        pr.imgs,
+        pr.title,
+        pr.type,
+        pr.unitPrice,
+        pr.shopId,
+        pr.city,
+        pr.showPrice,
+        pr.categoryId,
+        pr.province,
+        pr.laveStock
+        FROM
+        product pr
+        WHERE status = 1
+        <if test="dto.txnIdList !=null and dto.txnIdList.size() > 0">
+            AND pr.txnId in
+            <foreach collection="dto.txnIdList" index="index" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="dto.parentIdSet !=null and dto.parentIdSet.size() > 0">
+            AND pr.categoryId in
+            <foreach collection="dto.parentIdSet" index="index" item="t" open="(" close=")" separator=",">
+                #{t}
+            </foreach>
+        </if>
+        <if test="dto.categoryId != null and (dto.parentIdSet == null or dto.parentIdSet.size() == 0)">
+            AND pr.categoryId = #{dto.categoryId}
+        </if>
+        <if test="dto.province !=null and dto.province !=''">
+            AND pr.province = #{dto.province}
+        </if>
+        <if test="dto.city !=null and dto.city !=''">
+            AND pr.city = #{dto.city}
+        </if>
+        <if test="dto.area !=null and dto.area !=''">
+            AND pr.area = #{dto.area}
+        </if>
+        <if test="dto.keywords !=null and dto.keywords!=''">
+            AND pr.title LIKE #{dto.keywords}
+        </if>
+        <choose>
+            <when test="dto.type ==2">
+                AND pr.type = 2
+            </when>
+            <when test="dto.type ==3">
+                AND pr.type = 3
+            </when>
+            <when test="dto.type ==99">
+                AND pr.type = 99
+            </when>
+            <when test="dto.type ==1">
+                AND pr.type = 1
+            </when>
+        </choose>
+        ORDER BY
+        pr.lastModifyTime DESC
+    </select>
+
+    <select id="queryProductIndexList" resultType="com.dtlonline.shop.model.Product">
+        SELECT
+        pr.id,
+        pr.imgs,
+        pr.title,
+        pr.type,
+        pr.unitPrice,
+        pr.shopId,
+        pr.city,
+        pr.showPrice
+        FROM
+        product pr
+        WHERE `status` = 1
+        AND `type` = 1
+        <choose>
+            <when test="stringList !=null and stringList.size() > 0">
+                AND pr.txnId in
+                <foreach collection="stringList" index="index" item="t" open="(" close=")" separator=",">
+                    #{t}
+                </foreach>
+                ORDER BY FIELD(`txnId`,
+                <foreach collection="stringList" index="index" item="st" separator=",">
+                    #{st}
+                </foreach>
+                )
+            </when>
+            <otherwise>
+                ORDER BY pr.createTime DESC limit #{pageSize}
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="queryProductDetail" resultType="com.dtlonline.shop.model.Product">
+        SELECT
+          pr.id,
+          pr.`txnId`,
+          pr.categoryId,
+          pr.shopId,
+          pr.imgs,
+          pr.title,
+          pr.type,
+          pr.unitPrice,
+          pr.stock,
+          pr.laveStock,
+          pr.minDeal,
+          pr.province,
+          pr.city,
+          pr.area,
+          pr.showPrice,
+          pr.invoice,
+          pr.productionYear,
+          pr.address,
+          pr.userId,
+          pr.description
+        FROM
+          product pr
+        WHERE id=#{productId}
+    </select>
+
+    <select id="queryProductsByShopId" resultType="com.dtlonline.shop.view.ProductBriefnessDTO">
+        SELECT id, title, imgs, city, stock, unitPrice,`type` FROM product WHERE shopId = #{shopPage.shopId} AND `type` = 1 AND `status` = 1
+    </select>
+
+    <select id="queryItsUnRockedProducts" resultType="com.dtlonline.shop.view.ProductBriefnessDTO">
+        SELECT id, title, imgs, city, stock, unitPrice, `status`,`type`
+        FROM product WHERE shopId = #{shopPage.shopId} AND userId = #{userId} AND `status` != 1 AND `type` = 1 ORDER BY lastModifyTime DESC
+    </select>
+
+    <select id="queryItsRockedProducts" resultType="com.dtlonline.shop.view.ProductBriefnessDTO">
+        SELECT
+        id, title, imgs, city, stock, unitPrice, `status`,`type`
+        FROM product WHERE shopId = #{shopPage.shopId} AND `status` = 1 AND `type` = 1 ORDER BY lastModifyTime DESC
+    </select>
+
+    <update id="updateRackById">
+        UPDATE
+          product
+            SET
+             status=#{status}
+            WHERE
+              id=#{id} and `status` = 2 and userId = #{userId}
+    </update>
+
+    <update id="updateUnRackById">
+        UPDATE
+          product
+        SET
+          status=#{status}
+        WHERE
+          id=#{id} and `status` = 1 and userId = #{userId}
+    </update>
+
+    <update id="updateProductForId">
+        UPDATE
+        product
+        <set>
+            <if test="p.title !=null and p.title !=''">
+                title = #{p.title},
+            </if>
+            <if test="p.imgs !=null and p.imgs !=''">
+                imgs = #{p.imgs},
+            </if>
+            <if test="p.unitPrice !=null">
+                unitPrice = #{p.unitPrice},
+            </if>
+            <if test="p.stock !=null">
+                stock = #{p.stock},
+                laveStock = #{p.stock},
+            </if>
+            <if test="p.minDeal !=null">
+                minDeal = #{p.minDeal},
+            </if>
+            <if test="p.showPrice !=null">
+                showPrice = #{p.showPrice},
+            </if>
+            <if test="p.invoice !=null">
+                invoice = #{p.invoice},
+            </if>
+            <if test="p.productionYear !=null and p.productionYear !=''">
+                productionYear = #{p.productionYear},
+            </if>
+            <if test="p.province !=null and p.province !=''">
+                province = #{p.province},
+            </if>
+            <if test="p.city !=null and p.city !=''">
+                city = #{p.city},
+            </if>
+            <if test="p.area !=null and p.area !=''">
+                area = #{p.area},
+            </if>
+            <if test="p.address !=null and p.address !=''">
+                address = #{p.address},
+            </if>
+            <if test="p.description !=null and p.description !=''">
+                description = #{p.description},
+            </if>
+        </set>
+        WHERE id = #{productId} AND userId = #{userId}
+    </update>
+</mapper>

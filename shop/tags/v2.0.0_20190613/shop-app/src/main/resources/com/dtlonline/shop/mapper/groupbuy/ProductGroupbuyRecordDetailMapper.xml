@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtlonline.shop.mapper.groupbuy.ProductGroupbuyRecordDetailMapper">
+  <resultMap id="BaseResultMap" type="com.dtlonline.shop.model.groupbuy.ProductGroupbuyRecordDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txnId" jdbcType="VARCHAR" property="txnId" />
+    <result column="productGroupbuyRecordId" jdbcType="BIGINT" property="productGroupbuyRecordId" />
+    <result column="productGroupbuyId" jdbcType="BIGINT" property="productGroupbuyId" />
+    <result column="productId" jdbcType="BIGINT" property="productId" />
+    <result column="userShippingAddressId" jdbcType="BIGINT" property="userShippingAddressId" />
+    <result column="productiveYear" jdbcType="INTEGER" property="productiveYear" />
+    <result column="categoryId" jdbcType="BIGINT" property="categoryId" />
+    <result column="standardInfo" jdbcType="VARCHAR" property="standardInfo" />
+    <result column="standardTitle" jdbcType="VARCHAR" property="standardTitle" />
+    <result column="standardProductTitle" jdbcType="VARCHAR" property="standardProductTitle" />
+    <result column="minDeliveryQuantity" jdbcType="INTEGER" property="minDeliveryQuantity" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="totalAmount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="actualPrice" jdbcType="DECIMAL" property="actualPrice" />
+    <result column="actualTotalAmount" jdbcType="DECIMAL" property="actualTotalAmount" />
+    <result column="deliveryData" jdbcType="VARCHAR" property="deliveryData" />
+    <result column="isReachTarget" jdbcType="TINYINT" property="isReachTarget" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="userId" jdbcType="BIGINT" property="userId" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastModifyTime" jdbcType="TIMESTAMP" property="lastModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, txnId, productGroupbuyRecordId, productGroupbuyId, productId, userShippingAddressId, 
+    productiveYear, categoryId, standardInfo, standardTitle, standardProductTitle, minDeliveryQuantity, 
+    price, quantity, totalAmount, actualPrice, actualTotalAmount, deliveryData,
+    isReachTarget, `status`, userId, createTime, lastModifyTime
+  </sql>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dtlonline.shop.mapper.groupbuy.ProductGroupbuyDao">
+
+    <select id="queryListInPage" resultType="com.dtlonline.api.shop.view.groupbuy.ProductGroupbuyResponseDTO">
+        SELECT
+            id,
+            `type`,
+            title,
+            categoryId,
+            categoryTitle,
+            isTop,
+            balanceType,
+            `status`,
+            isPublished,
+            buyEndDate,
+            activityEndDate
+        FROM
+            product_groupbuy
+        WHERE `status` != -1
+        <if test="title != null and title != ''">
+            title LIKE #{title}
+        </if>
+        <if test="type != null">
+            AND  `type` = #{type}
+        </if>
+        <if test="status != null">
+            AND  `status` = #{status}
+        </if>
+        <if test="beginTime != null">
+            AND  activityEndDate <![CDATA[>=]]> #{beginTime}
+        </if>
+        <if test="endTime != null">
+            AND  activityEndDate <![CDATA[<=]]> #{endTime}
+        </if>
+    </select>
+</mapper>

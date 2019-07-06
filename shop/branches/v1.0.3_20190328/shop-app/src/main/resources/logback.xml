@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+<configuration debug="false" scan="false">
+    <contextName>user</contextName>
+    <property name="log.level" value="INFO"/>
+    <property name="log.base" value="/data/logs/shop"/>
+    <property name="log.name" value="shop"/>
+    <property name="console.pattern"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{traceId}] %highlight(%-5level) %cyan(%logger{50}) : %msg%n"/>
+    <property name="file.pattern"
+              value="%d{yyyy-MM-dd HH:mm:ss} [%X{traceId}] %-5level %logger{50} : %msg%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${console.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.base}/${log.name}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.base}/${log.name}-log-%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <maxFileSize>500MB</maxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${file.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <file>${log.base}/${log.name}-err.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.base}/${log.name}-log-err-%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <maxFileSize>500MB</maxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${file.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="${log.level}">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="FILE-ERROR"/>
+    </root>
+
+    <logger name="com.dtlonline.shop.mapper" additivity="true" level="DEBUG"/>
+</configuration>

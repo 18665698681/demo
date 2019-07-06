@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtlonline.shop.mapper.groupbuy.ProductGroupbuyMapper">
+  <resultMap id="BaseResultMap" type="com.dtlonline.shop.model.groupbuy.ProductGroupbuy">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txnId" jdbcType="VARCHAR" property="txnId" />
+    <result column="productId" jdbcType="BIGINT" property="productId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="yearMonth" jdbcType="TIMESTAMP" property="yearMonth" />
+    <result column="balanceType" jdbcType="TINYINT" property="balanceType" />
+    <result column="minDiscountQuantity" jdbcType="INTEGER" property="minDiscountQuantity" />
+    <result column="marketPrice" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="buyBeginDate" jdbcType="TIMESTAMP" property="buyBeginDate" />
+    <result column="buyEndDate" jdbcType="TIMESTAMP" property="buyEndDate" />
+    <result column="activityEndDate" jdbcType="TIMESTAMP" property="activityEndDate" />
+    <result column="buyTotalQuantity" jdbcType="INTEGER" property="buyTotalQuantity" />
+    <result column="isPublished" jdbcType="TINYINT" property="isPublished" />
+    <result column="isTop" jdbcType="TINYINT" property="isTop" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="opinion" jdbcType="VARCHAR" property="opinion" />
+    <result column="userId" jdbcType="BIGINT" property="userId" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastModifyTime" jdbcType="TIMESTAMP" property="lastModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, txnId, productId, title, `type`, yearMonth, balanceType, minDiscountQuantity, 
+    marketPrice, buyBeginDate, buyEndDate, activityEndDate, buyTotalQuantity, isPublished, 
+    isTop, `status`, opinion, userId, createTime, lastModifyTime
+  </sql>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtlonline.shop.mapper.groupbuy.ProductGroupbuyRecordMapper">
+  <resultMap id="BaseResultMap" type="com.dtlonline.shop.model.groupbuy.ProductGroupbuyRecord">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="txnId" jdbcType="VARCHAR" property="txnId" />
+    <result column="productId" jdbcType="BIGINT" property="productId" />
+    <result column="productGroupbuyId" jdbcType="BIGINT" property="productGroupbuyId" />
+    <result column="balanceType" jdbcType="TINYINT" property="balanceType" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="totalAmount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="actualTotalAmount" jdbcType="DECIMAL" property="actualTotalAmount" />
+    <result column="buyerContractIds" jdbcType="VARCHAR" property="buyerContractIds" />
+    <result column="sellerContractIds" jdbcType="VARCHAR" property="sellerContractIds" />
+    <result column="supplementaryContractIds" jdbcType="VARCHAR" property="supplementaryContractIds" />
+    <result column="paymentMethod" jdbcType="TINYINT" property="paymentMethod" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="userId" jdbcType="BIGINT" property="userId" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastModifyTime" jdbcType="TIMESTAMP" property="lastModifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, txnId, productId, productGroupbuyId, balanceType, price, quantity, totalAmount, 
+    actualTotalAmount, buyerContractIds, sellerContractIds, supplementaryContractIds, 
+    paymentMethod, `status`, userId, createTime, lastModifyTime
+  </sql>
+</mapper>
